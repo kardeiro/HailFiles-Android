@@ -147,7 +147,7 @@ private fun ErrorState(message: String, onRetry: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Icon(
-            imageVector = androidx.compose.material.icons.Icons.Outlined.CloudOff,
+            imageVector = androidx.compose.material.icons.Icons.Outlined.Cloud,
             contentDescription = null,
             modifier = Modifier.size(64.dp),
             tint = MaterialTheme.colorScheme.onSurfaceVariant
@@ -175,9 +175,9 @@ private fun EmptyState(isSearching: Boolean) {
     ) {
         Icon(
             imageVector = if (isSearching)
-                androidx.compose.material.icons.Icons.Outlined.SearchOff
+                androidx.compose.material.icons.Icons.Outlined.Search
             else
-                androidx.compose.material.icons.Icons.Outlined.FolderOff,
+                androidx.compose.material.icons.Icons.Outlined.Folder,
             contentDescription = null,
             modifier = Modifier.size(64.dp),
             tint = MaterialTheme.colorScheme.onSurfaceVariant

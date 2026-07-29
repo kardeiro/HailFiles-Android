@@ -10,6 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.unit.dp
 import com.kardeiro.hailfiles.ui.home.CategoryInfo
 import com.kardeiro.hailfiles.ui.theme.ExpressiveShapes
 import com.kardeiro.hailfiles.ui.theme.Spacing

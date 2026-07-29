@@ -1,8 +1,5 @@
 package com.kardeiro.hailfiles.data.model
 
-import kotlinx.serialization.Serializable
-
-@Serializable
 data class AppDetail(
     val id: String = "",
     val name: String = "",
@@ -28,7 +25,6 @@ data class AppDetail(
     val tags: List<String> = emptyList()
 )
 
-@Serializable
 data class AppMirror(
     val id: String = "",
     val label: String = "",
@@ -36,7 +32,6 @@ data class AppMirror(
     val type: String = ""
 )
 
-@Serializable
 data class ChangelogEntry(
     val version: String = "",
     val date: String = "",

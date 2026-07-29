@@ -1,20 +1,18 @@
 package com.kardeiro.hailfiles.data.api
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.kardeiro.hailfiles.util.Constants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.kotlinx.serialization.asConverterFactory
-import kotlinx.serialization.json.Json
-import okhttp3.MediaType.Companion.toMediaType
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object ApiClient {
-    private val json = Json {
-        ignoreUnknownKeys = true
-        isLenient = true
-        coerceInputValues = true
-    }
+    private val gson: Gson = GsonBuilder()
+        .setLenient()
+        .create()
 
     private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor().apply {
@@ -27,7 +25,7 @@ object ApiClient {
     private val retrofit = Retrofit.Builder()
         .baseUrl(Constants.DB_BASE_URL)
         .client(okHttpClient)
-        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+        .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
 
     val api: HailFilesApi = retrofit.create(HailFilesApi::class.java)
