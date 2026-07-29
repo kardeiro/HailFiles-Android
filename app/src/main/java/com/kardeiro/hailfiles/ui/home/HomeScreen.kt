@@ -1,11 +1,14 @@
 package com.kardeiro.hailfiles.ui.home
 
 import androidx.compose.animation.*
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Cloud
+import androidx.compose.material.icons.filled.Folder
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -14,7 +17,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kardeiro.hailfiles.ui.components.*
 import com.kardeiro.hailfiles.ui.theme.Spacing
-import com.kardeiro.hailfiles.data.model.AppIndexItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -60,7 +62,6 @@ fun HomeScreen(
             ),
             verticalArrangement = Arrangement.spacedBy(Spacing.md)
         ) {
-            // Hero Section
             item(key = "hero") {
                 HeroSection(
                     searchQuery = uiState.searchQuery,
@@ -68,7 +69,6 @@ fun HomeScreen(
                 )
             }
 
-            // Stats Bar
             item(key = "stats") {
                 StatsBar(
                     totalCount = uiState.totalCount,
@@ -76,7 +76,6 @@ fun HomeScreen(
                 )
             }
 
-            // Filter Chips
             item(key = "filters") {
                 FilterChipsRow(
                     categories = uiState.categories,
@@ -85,7 +84,6 @@ fun HomeScreen(
                 )
             }
 
-            // Content
             when {
                 uiState.isLoading -> {
                     items(6) { index ->
@@ -128,7 +126,6 @@ fun HomeScreen(
             }
         }
 
-        // Toast
         uiState.toastMessage?.let { message ->
             HailFilesToast(
                 message = message,
@@ -147,7 +144,7 @@ private fun ErrorState(message: String, onRetry: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Icon(
-            imageVector = androidx.compose.material.icons.Icons.Outlined.Cloud,
+            imageVector = Icons.Filled.Cloud,
             contentDescription = null,
             modifier = Modifier.size(64.dp),
             tint = MaterialTheme.colorScheme.onSurfaceVariant
@@ -174,10 +171,8 @@ private fun EmptyState(isSearching: Boolean) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Icon(
-            imageVector = if (isSearching)
-                androidx.compose.material.icons.Icons.Outlined.Search
-            else
-                androidx.compose.material.icons.Icons.Outlined.Folder,
+            imageVector = if (isSearching) Icons.Filled.Search
+            else Icons.Filled.Folder,
             contentDescription = null,
             modifier = Modifier.size(64.dp),
             tint = MaterialTheme.colorScheme.onSurfaceVariant
