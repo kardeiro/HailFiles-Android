@@ -24,7 +24,13 @@ class AppCache {
     }
 
     fun getDetail(id: String): AppDetail? {
-        return detailCache[id]?.detail
+        val cached = detailCache[id] ?: return null
+        return if (System.currentTimeMillis() - cached.timestamp < Constants.CACHE_TTL_MS) {
+            cached.detail
+        } else {
+            detailCache.remove(id)
+            null
+        }
     }
 
     fun saveDetail(id: String, detail: AppDetail) {
